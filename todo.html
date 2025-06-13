@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #new-task {
+      padding: 10px;
+      width: 200px;
+    }
+
+    #add-btn {
+      padding: 10px 15px;
+      margin-left: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      width: 300px;
+      margin: 0 auto 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📝 To-Do List</h1>
+
+  <input type="text" id="new-task" placeholder="Enter a new task">
+  <button id="add-btn">Add Task</button>
+
+  <ul id="task-list"></ul>
+
+  <script>
+    const addBtn = document.getElementById('add-btn');
+    const taskInput = document.getElementById('new-task');
+    const taskList = document.getElementById('task-list');
+
+    addBtn.addEventListener('click', () => {
+      const taskText = taskInput.value.trim();
+
+      if (taskText === '') {
+        alert("Please enter a task.");
+        return;
+      }
+
+      const li = document.createElement('li');
+      li.innerHTML = `${taskText} <button class="delete-btn">Delete</button>`;
+
+      taskList.appendChild(li);
+      taskInput.value = '';
+
+      li.querySelector('.delete-btn').addEventListener('click', () => {
+        li.remove();
+      });
+    });
+  </script>
+
+</body>
+</html>
